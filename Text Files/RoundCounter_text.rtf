@@ -1,0 +1,113 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red221\green40\blue103;\red217\green232\blue247;\red18\green144\blue195;
+\red249\green250\blue244;\red102\green225\blue248;\red230\green230\blue250;\red104\green151\blue187;\red141\green218\blue248;
+\red30\green181\blue64;\red237\green127\blue72;\red23\green198\blue163;\red167\green236\blue33;\red255\green191\blue38;
+\red98\green98\blue98;\red150\green236\blue63;\red121\green171\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f0\fs22 \cf0 \
+\pard\pardeftab720
+\cf2 public\cf3  \cf2 class\cf3  \cf4 RoundCounter\cf0 \
+\pard\pardeftab720
+\cf5 \{\cf0 \
+\pard\pardeftab720
+\cf3 	\cf2 public\cf3  \cf4 HImage\cf5 []\cf3  \cf6 images\cf3  \cf7 =\cf3  \cf2 new\cf3  \cf4 HImage\cf5 [\cf8 3\cf5 ]\cf7 ;\cf0 \
+\cf3 	\cf0 \
+\cf3 	\cf2 private\cf3  \cf2 static\cf3  \cf4 HImage\cf5 []\cf3  \cf9 numbers\cf3  \cf7 =\cf3  \cf2 new\cf3  \cf4 HImage\cf5 [\cf8 10\cf5 ]\cf7 ;\cf0 \
+\cf3 	\cf0 \
+\cf3 	\cf2 public\cf3  \cf2 int\cf3  \cf6 x\cf7 ;\cf0 \
+\cf3 	\cf2 public\cf3  \cf2 int\cf3  \cf6 y\cf7 ;\cf0 \
+\cf3 	\cf2 public\cf3  \cf2 int\cf3  \cf6 w\cf7 ;\cf0 \
+\cf3 	\cf2 public\cf3  \cf2 int\cf3  \cf6 h\cf7 ;\cf0 \
+\cf3 	\cf0 \
+\cf3 	\cf2 private\cf3  \cf2 int\cf3  \cf6 round\cf7 ;\cf0 \
+\cf3 	\cf0 \
+\cf3 	\cf2 public\cf3  \cf10 RoundCounter\cf3  \cf5 ()\cf0 \
+\cf3 	\cf5 \{\cf0 \
+\cf3 		\cf2 try\cf0 \
+\cf3 		\cf5 \{\cf0 \
+\cf3 			\cf4 String\cf3  \cf11 path\cf3  \cf7 =\cf3  \cf12 "Resource2/Images/MenuPics/RoundCounter"\cf7 ;\cf0 \
+\cf3 	\cf0 \
+\cf3 			\cf2 this\cf7 .\cf6 images\cf5 [\cf8 0\cf5 ]\cf3  \cf7 =\cf3  \cf2 new\cf3  \cf13 HImage\cf5 (\cf14 path\cf5 )\cf7 ;\cf0 \
+\cf3 			\cf0 \
+\cf3 			\cf15 //Size\cf0 \
+\cf3 			\cf2 this\cf7 .\cf6 w\cf3  \cf7 =\cf3  \cf2 this\cf7 .\cf6 images\cf5 [\cf8 0\cf5 ]\cf7 .\cf6 width\cf7 ;\cf0 \
+\cf3 			\cf2 this\cf7 .\cf6 h\cf3  \cf7 =\cf3  \cf2 this\cf7 .\cf6 images\cf5 [\cf8 0\cf5 ]\cf7 .\cf6 height\cf7 ;\cf0 \
+\cf3 			\cf15 //Position\cf0 \
+\cf3 			\cf2 this\cf7 .\cf6 x\cf3  \cf7 =\cf3  \cf4 GameBoard\cf7 .\cf9 boardWidth\cf3  \cf7 -\cf3  \cf2 this\cf7 .\cf6 w\cf7 ;\cf0 \
+\cf3 			\cf2 this\cf7 .\cf6 y\cf3  \cf7 =\cf3  \cf4 GameBoard\cf7 .\cf9 boardHeight\cf3  \cf7 -\cf3  \cf2 this\cf7 .\cf6 h\cf7 ;\cf0 \
+\
+\cf3 			\cf15 //Setting numbers\cf0 \
+\cf3 			\cf2 for\cf3  \cf5 (\cf2 int\cf3  \cf11 i\cf3  \cf7 =\cf3  \cf8 0\cf7 ;\cf3  \cf14 i\cf3  \cf7 <\cf3  \cf8 10\cf7 ;\cf3  \cf14 i\cf7 ++\cf5 )\cf0 \
+\cf3 			\cf5 \{\cf0 \
+\cf3 				\cf4 String\cf3  \cf11 tDir\cf3  \cf7 =\cf3  \cf12 "A_"\cf3  \cf7 +\cf3  \cf4 Integer\cf7 .\cf16 toString\cf5 (\cf14 i\cf5 )\cf7 ;\cf0 \
+\cf3 				\cf0 \
+\cf3 				\cf9 numbers\cf5 [\cf14 i\cf5 ]\cf3  \cf7 =\cf3  \cf2 new\cf3  \cf13 HImage\cf5 (\cf12 "Resource2/Images/Numbers/"\cf3  \cf7 +\cf3  \cf14 tDir\cf5 )\cf7 ;\cf0 \
+\cf3 			\cf5 \}\cf0 \
+\cf3 			\cf0 \
+\cf3 			\cf15 //Initializing other images\cf0 \
+\cf3 			\cf2 this\cf7 .\cf6 images\cf5 [\cf8 1\cf5 ]\cf3  \cf7 =\cf3  \cf2 new\cf3  \cf13 HImage\cf5 (\cf12 "Resource2/Images/Numbers/A_0"\cf5 )\cf7 ;\cf0 \
+\cf3 			\cf2 this\cf7 .\cf6 images\cf5 [\cf8 2\cf5 ]\cf3  \cf7 =\cf3  \cf2 new\cf3  \cf13 HImage\cf5 (\cf12 "Resource2/Images/Numbers/A_0"\cf5 )\cf7 ;\cf0 \
+\cf3 			\cf0 \
+\cf3 			\cf15 //Setting round numbers\cf0 \
+\cf3 			\cf2 this\cf7 .\cf6 round\cf3  \cf7 =\cf3  \cf8 0\cf7 ;\cf0 \
+\cf3 	\cf0 \
+\cf3 			\cf2 if\cf3  \cf5 (\cf2 this\cf7 .\cf6 round\cf3  \cf7 <\cf3  \cf8 10\cf5 )\cf0 \
+\cf3 			\cf5 \{\cf0 \
+\cf3 				\cf2 this\cf7 .\cf6 images\cf5 [\cf8 1\cf5 ]\cf7 .\cf6 image\cf3  \cf7 =\cf3  \cf9 numbers\cf5 [\cf8 0\cf5 ]\cf7 .\cf6 image\cf7 ;\cf0 \
+\cf3 				\cf2 this\cf7 .\cf6 images\cf5 [\cf8 2\cf5 ]\cf7 .\cf6 image\cf3  \cf7 =\cf3  \cf9 numbers\cf5 [\cf2 this\cf7 .\cf6 round\cf5 ]\cf7 .\cf6 image\cf7 ;\cf0 \
+\cf3 			\cf5 \}\cf0 \
+\cf3 			\cf0 \
+\cf3 			\cf2 else\cf0 \
+\cf3 			\cf5 \{\cf0 \
+\cf3 				\cf2 int\cf3  \cf11 num1\cf3  \cf7 =\cf3  \cf5 (\cf2 int\cf5 )\cf4 Math\cf7 .\cf16 floor\cf5 (\cf2 this\cf7 .\cf6 round\cf3  \cf7 /\cf3  \cf8 10\cf5 )\cf7 ;\cf0 \
+\cf3 				\cf2 int\cf3  \cf11 num2\cf3  \cf7 =\cf3  \cf2 this\cf7 .\cf6 round\cf3  \cf7 -\cf3  \cf5 (\cf14 num1\cf3  \cf7 *\cf3  \cf8 10\cf5 )\cf7 ;\cf0 \
+\cf3 				\cf0 \
+\cf3 				\cf2 this\cf7 .\cf6 images\cf5 [\cf8 1\cf5 ]\cf7 .\cf6 image\cf3  \cf7 =\cf3  \cf9 numbers\cf5 [\cf14 num1\cf5 ]\cf7 .\cf6 image\cf7 ;\cf0 \
+\cf3 				\cf2 this\cf7 .\cf6 images\cf5 [\cf8 2\cf5 ]\cf7 .\cf6 image\cf3  \cf7 =\cf3  \cf9 numbers\cf5 [\cf14 num2\cf5 ]\cf7 .\cf6 image\cf7 ;\cf0 \
+\cf3 				\cf0 \
+\cf3 				\cf4 System\cf7 .\cf9 out\cf7 .\cf13 println\cf5 (\cf12 "Num1 = "\cf3  \cf7 +\cf3  \cf14 num1\cf5 )\cf7 ;\cf0 \
+\cf3 				\cf4 System\cf7 .\cf9 out\cf7 .\cf13 println\cf5 (\cf12 "Num2 = "\cf3  \cf7 +\cf3  \cf14 num2\cf5 )\cf7 ;\cf0 \
+\cf3 			\cf5 \}\cf0 \
+\cf3 			\cf0 \
+\cf3 			\cf2 this\cf7 .\cf6 images\cf5 [\cf8 0\cf5 ]\cf7 .\cf6 xPos\cf3  \cf7 =\cf3  \cf2 this\cf7 .\cf6 x\cf7 ;\cf0 \
+\cf3 			\cf2 this\cf7 .\cf6 images\cf5 [\cf8 0\cf5 ]\cf7 .\cf6 yPos\cf3  \cf7 =\cf3  \cf2 this\cf7 .\cf6 y\cf7 ;\cf0 \
+\cf3 			\cf0 \
+\cf3 			\cf2 this\cf7 .\cf6 images\cf5 [\cf8 1\cf5 ]\cf7 .\cf6 xPos\cf3  \cf7 =\cf3  \cf2 this\cf7 .\cf6 x\cf3  \cf7 +\cf3  \cf8 27\cf3  \cf7 *\cf3  \cf8 8\cf7 ;\cf0 \
+\cf3 			\cf2 this\cf7 .\cf6 images\cf5 [\cf8 1\cf5 ]\cf7 .\cf6 yPos\cf3  \cf7 =\cf3  \cf2 this\cf7 .\cf6 y\cf3  \cf7 +\cf3  \cf8 24\cf7 ;\cf0 \
+\cf3 			\cf0 \
+\cf3 			\cf2 this\cf7 .\cf6 images\cf5 [\cf8 2\cf5 ]\cf7 .\cf6 xPos\cf3  \cf7 =\cf3  \cf2 this\cf7 .\cf6 images\cf5 [\cf8 1\cf5 ]\cf7 .\cf6 xPos\cf3  \cf7 +\cf3  \cf2 this\cf7 .\cf6 images\cf5 [\cf8 1\cf5 ]\cf7 .\cf6 width\cf3  \cf7 +\cf3  \cf8 8\cf7 ;\cf0 \
+\cf3 			\cf2 this\cf7 .\cf6 images\cf5 [\cf8 2\cf5 ]\cf7 .\cf6 yPos\cf3  \cf7 =\cf3  \cf2 this\cf7 .\cf6 y\cf3  \cf7 +\cf3  \cf8 24\cf7 ;\cf0 \
+\cf3 			\cf0 \
+\cf3 		\cf5 \}\cf0 \
+\cf3 		\cf2 catch\cf3  \cf5 (\cf4 Exception\cf3  \cf11 e\cf5 )\cf0 \
+\cf3 		\cf5 \{\cf0 \
+\cf3 			\cf4 System\cf7 .\cf9 out\cf7 .\cf13 println\cf5 (\cf12 "Round Counter construction failed"\cf5 )\cf7 ;\cf0 \
+\cf3 			\cf4 System\cf7 .\cf9 out\cf7 .\cf13 println\cf5 (\cf14 e\cf7 .\cf13 toString\cf5 ())\cf7 ;\cf0 \
+\cf3 		\cf5 \}\cf0 \
+\cf3 	\cf5 \}\cf0 \
+\cf3 	\cf0 \
+\cf3 	\cf2 public\cf3  \cf2 void\cf3  \cf10 setRound\cf3  \cf5 (\cf2 int\cf3  \cf17 i\cf5 )\cf0 \
+\cf3 	\cf5 \{\cf0 \
+\cf3 		\cf2 this\cf7 .\cf6 round\cf3  \cf7 =\cf3  \cf17 i\cf7 ;\cf0 \
+\cf3 		\cf0 \
+\cf3 		\cf2 if\cf3  \cf5 (\cf2 this\cf7 .\cf6 round\cf3  \cf7 <\cf3  \cf8 10\cf5 )\cf0 \
+\cf3 		\cf5 \{\cf0 \
+\cf3 			\cf2 this\cf7 .\cf6 images\cf5 [\cf8 1\cf5 ]\cf7 .\cf6 image\cf3  \cf7 =\cf3  \cf9 numbers\cf5 [\cf8 0\cf5 ]\cf7 .\cf6 image\cf7 ;\cf0 \
+\cf3 			\cf2 this\cf7 .\cf6 images\cf5 [\cf8 2\cf5 ]\cf7 .\cf6 image\cf3  \cf7 =\cf3  \cf9 numbers\cf5 [\cf2 this\cf7 .\cf6 round\cf5 ]\cf7 .\cf6 image\cf7 ;\cf0 \
+\cf3 		\cf5 \}\cf0 \
+\cf3 		\cf0 \
+\cf3 		\cf2 else\cf0 \
+\cf3 		\cf5 \{\cf0 \
+\cf3 			\cf2 int\cf3  \cf11 num1\cf3  \cf7 =\cf3  \cf5 (\cf2 int\cf5 )\cf4 Math\cf7 .\cf16 floor\cf5 (\cf2 this\cf7 .\cf6 round\cf3  \cf7 /\cf3  \cf8 10\cf5 )\cf7 ;\cf0 \
+\cf3 			\cf2 int\cf3  \cf11 num2\cf3  \cf7 =\cf3  \cf2 this\cf7 .\cf6 round\cf3  \cf7 -\cf3  \cf5 (\cf14 num1\cf3  \cf7 *\cf3  \cf8 10\cf5 )\cf7 ;\cf0 \
+\cf3 			\cf0 \
+\cf3 			\cf2 this\cf7 .\cf6 images\cf5 [\cf8 1\cf5 ]\cf7 .\cf6 image\cf3  \cf7 =\cf3  \cf9 numbers\cf5 [\cf14 num1\cf5 ]\cf7 .\cf6 image\cf7 ;\cf0 \
+\cf3 			\cf2 this\cf7 .\cf6 images\cf5 [\cf8 2\cf5 ]\cf7 .\cf6 image\cf3  \cf7 =\cf3  \cf9 numbers\cf5 [\cf14 num2\cf5 ]\cf7 .\cf6 image\cf7 ;\cf0 \
+\cf3 		\cf5 \}\cf0 \
+\cf3 	\cf5 \}\cf0 \
+\pard\pardeftab720
+\cf5 \}\cf0 \
+}

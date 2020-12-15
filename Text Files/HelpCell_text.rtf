@@ -1,0 +1,46 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 import java.awt.Color;\
+\
+import javax.swing.JLabel;\
+\
+public class HelpCell\
+\{\
+	//Position\
+	public int x;\
+	public int y;\
+	\
+	public int w;\
+	public int h;\
+	\
+	public HImage sprite;\
+	public JLabel lbl1 = new JLabel();\
+	\
+	public HelpCell (int x, int y, int w, int h, String imageDir, String lbl)\
+	\{\
+		this.x = x;\
+		this.y = y;\
+		\
+		this.w = w;\
+		this.h = h;\
+		\
+		//Sprite\
+		this.sprite = new HImage (x, y, w, h, imageDir);\
+\
+		//Label\
+		lbl1.setText("<html>" + lbl + "</html>");\
+		lbl1.setVisible(true);\
+\
+		lbl1.setBounds(this.x, this.y + this.h + 10, this.w, 125);\
+		lbl1.setVerticalAlignment(JLabel.TOP);\
+		lbl1.setForeground(Color.WHITE);\
+		lbl1.setBackground(Color.BLACK);\
+		\
+		//Adding to frame\
+		HelpMenu.mainBoard.add(lbl1);\
+	\}\
+\}}

@@ -1,0 +1,158 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 import java.awt.Rectangle;\
+import java.awt.image.BufferedImage;\
+import java.io.File;\
+import java.io.IOException;\
+\
+import javax.imageio.ImageIO;\
+\
+public class MenuItem\
+\{\
+	//Position\
+	public int xPos = 0;\
+	public int yPos = 0;\
+	//Dimensions\
+	public int width = 0;\
+	public int height = 0;\
+	//The Image\
+	public BufferedImage image = null;\
+	public BufferedImage on = null;\
+	public BufferedImage off = null;\
+	\
+	private String name;\
+	\
+	private String directory1;\
+	private String directory2;\
+	\
+	//Navigation\
+	public static MenuItem itemLast;\
+	public Menu menu;\
+	public int intmenu;\
+	\
+	public String action = null;\
+\
+	//Constructor For New Buttons (Other)\
+	public MenuItem (String name, String action)\
+	\{\
+		this.name = name;\
+		this.action = action;\
+\
+		this.directory1 = "Resource2/Images/MenuPics/" + this.name + "Off" + ".png";\
+		this.directory2 = "Resource2/Images/MenuPics/" + this.name + "On" + ".png";\
+		//Getting Image\
+		try\
+		\{\
+			this.off = ImageIO.read(new File(this.directory1));\
+			this.on = ImageIO.read(new File(this.directory2));\
+\
+			this.width = (int)(this.off.getWidth());\
+			this.height = (int)(this.off.getHeight());\
+			\
+			this.image = this.off;\
+		\}\
+		catch (IOException e)\
+		\{\
+			System.out.println("Menu Item file not found: " + this.directory1 + " _ " + this.directory2);\
+		\}\
+	\}\
+	\
+	//Overload For New Buttons (with menu tag)\
+	public MenuItem (String name, String action, int intmenu)\
+	\{\
+		this.name = name;\
+		this.action = action;\
+		this.intmenu = intmenu;\
+\
+		this.directory1 = "Resource2/Images/MenuPics/" + this.name + "Off" + ".png";\
+		this.directory2 = "Resource2/Images/MenuPics/" + this.name + "On" + ".png";\
+		//Getting Image\
+		try\
+		\{\
+			this.off = ImageIO.read(new File(this.directory1));\
+			this.on = ImageIO.read(new File(this.directory2));\
+\
+			this.width = (int)(this.off.getWidth());\
+			this.height = (int)(this.off.getHeight());\
+			\
+			this.image = this.off;\
+		\}\
+		catch (IOException e)\
+		\{\
+			System.out.println("Menu Item file not found: " + this.directory1 + " _ " + this.directory2);\
+		\}\
+	\}\
+	\
+	//Constructor for center\
+	public MenuItem (String dir, String action, int intmenu, int y)\
+	\{\
+		this.name = dir;\
+		this.action = action;\
+		this.intmenu = intmenu;\
+		this.yPos = y;\
+\
+		this.directory1 = "Resource2/Images/MenuPics/" + this.name + "Off" + ".png";\
+		this.directory2 = "Resource2/Images/MenuPics/" + this.name + "On" + ".png";\
+		//Getting Image\
+		try\
+		\{\
+			this.off = ImageIO.read(new File(this.directory1));\
+			this.on = ImageIO.read(new File(this.directory2));\
+			\
+			this.image = this.off;\
+			\
+			this.width = (this.off.getWidth());\
+			this.height = (this.off.getHeight());\
+			\
+			this.xPos = (GameBoard.boardWidth / 2) - (this.width / 2);\
+		\}\
+		catch (IOException e)\
+		\{\
+			System.out.println("File not found: " + this.directory1 + " _ " + this.directory2);\
+		\}\
+	\}\
+	\
+	//Overload for x and y\
+	public MenuItem (String name, int x, int y, String action)\
+	\{\
+		this.name = name;\
+		this.action = action;\
+		this.xPos = x;\
+		this.yPos = y;\
+\
+		this.directory1 = "Resource2/Images/MenuPics/" + this.name + "Off" + ".png";\
+		this.directory2 = "Resource2/Images/MenuPics/" + this.name + "On" + ".png";\
+		//Getting Image\
+		try\
+		\{\
+			this.off = ImageIO.read(new File(this.directory1));\
+			this.on = ImageIO.read(new File(this.directory2));\
+			\
+			this.image = this.off;\
+			\
+			this.width = (this.off.getWidth() / 16) * 14;\
+			this.height = (this.off.getHeight() / 16) * 14;\
+\
+		\}\
+		catch (IOException e)\
+		\{\
+			System.out.println("File not found: " + this.directory1 + " _ " + this.directory2);\
+		\}\
+	\}\
+	\
+	//Highlighted!\
+	public void highlight ()\
+	\{this.image = this.on;\}\
+	\
+	public void unHighlight ()\
+	\{this.image = this.off;\}\
+	\
+	//Getting Bounds\
+	public Rectangle getBounds ()\
+	\{return new Rectangle(this.xPos, this.yPos, this.width, this.height);\}\
+\}\
+}

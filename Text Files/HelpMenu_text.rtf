@@ -1,0 +1,173 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 import java.awt.Graphics;\
+import java.awt.Graphics2D;\
+import java.awt.Point;\
+import java.awt.RenderingHints;\
+import java.awt.event.MouseAdapter;\
+import java.awt.event.MouseEvent;\
+\
+import javax.swing.JPanel;\
+\
+@SuppressWarnings("serial")\
+public class HelpMenu extends JPanel\
+\{\
+	public static GameBoard mainBoard;\
+	\
+	//Back Button\
+	public MenuItem backButton = new MenuItem("Back", "Back", 0, 0);\
+	private MenuItem itemLast;\
+	\
+	//Help Cells\
+	private static int numOfItems = 7;\
+	\
+	private String[] dirs = new String[numOfItems];\
+	private String[] texts = new String[numOfItems];\
+	\
+	public HelpCell[] cells = new HelpCell[numOfItems];\
+	\
+	//Size of cells\
+	private int width = 200;\
+	private int height = 200;\
+\
+	//Constructor\
+	public HelpMenu (GameBoard board)\
+	\{\
+		mainBoard = board;\
+		setUpCells();\
+		\
+		//Integers\
+		int xMargin = 50;\
+		int yMargin = 300;\
+		\
+		//Creating cells\
+		for (int i = 0; i < numOfItems; i++)\
+		\{\
+			//Position\
+			int x = 20 + i * (width + xMargin);\
+			\
+			int r = (int) (Math.floor((x + width) / (GameBoard.boardWidth)));\
+			int n = (int) (Math.floor((GameBoard.boardWidth - 20 - width) / (width + xMargin))) + 1;\
+			\
+			x = 20 + (i - (r * n)) * (width + xMargin);\
+			int y = 200 + r * yMargin;\
+			\
+			this.cells[i] = new HelpCell(x, y, width, height, dirs[i], this.texts[i]);\
+		\}\
+\
+		this.revalidate();\
+		this.repaint();\
+		\
+		this.addMouseMotionListener(new MouseAdapter()\
+		\{\
+			@Override\
+			public void mouseMoved(MouseEvent e)\
+			\{\
+				Point xy = e.getPoint();\
+				\
+				if (backButton.getBounds().contains(xy))\
+				\{updateMenuTest(backButton);\}\
+				\
+				else\
+				\{updateMenuTest(null);\}\
+			\}\
+			\
+		\});\
+		\
+		this.addMouseListener(new MouseAdapter()\
+		\{\
+			@Override\
+			public void mousePressed(MouseEvent e)\
+			\{\
+				Point xy = e.getPoint();\
+				\
+				if (backButton.getBounds().contains(xy))\
+				\{back();\}\
+			\}\
+		\});\
+	\}\
+	\
+	private void setUpCells ()\
+	\{\
+		this.dirs[0] = "/Ship/ShipBlue0On";\
+		this.texts[0] = "This is your ship. Control it using the W A S D keys, or with the arrow keys.";\
+		\
+		this.dirs[1] = "/Asteroid/Asteroid0";\
+		this.texts[1] = "This is an asteroid. Shoot it to blow it up. When it explodes coins drop and it splits in 2.";\
+		\
+		this.dirs[2] = "/HelpMenu/HelpCoins";\
+		this.texts[2] = "These are coins, fly over them to pick them up.";\
+		\
+		this.dirs[3] = "/HelpMenu/HelpBullets";\
+		this.texts[3] = "These are bullets, you shoot them from your ship by pressing space. You can swich weapons by scrolling with the mouse wheel, or clicking on the weapon icon at the top of the screen. The missile has splash damage.";\
+		\
+		this.dirs[4] = "/HelpMenu/Help_Up";\
+		this.texts[4] = "Hold shift while flying to activate the inertial dampeners and slow down you're ship.";\
+		\
+		this.dirs[5] = "/HelpMenu/Help_Cap";\
+		this.texts[5] = "Alternatively, toggle Caps lock to toggle the inertial dampeners";\
+		\
+		this.dirs[6] = "/HelpMenu/Help_P";\
+		this.texts[6] = "Tap 'P' to pause the game, or the pause button at the top right of the screen.";\
+		\
+		this.dirs[6] = "/HelpMenu/HelpShop";\
+		this.texts[6] = "You can use the shop after you complete every round. The shop allows you to buy guns and lifes in exchange for coins.";\
+		\
+		numOfItems = dirs.length;\
+	\}\
+	\
+	//Update back button\
+	public void updateMenuTest (MenuItem item)\
+	\{\
+		if (this.itemLast != item)\
+		\{\
+			this.itemLast = item;\
+\
+			this.backButton.unHighlight();\
+			\
+			//Highlighting next\
+			if (this.itemLast != null)\
+			\{\
+				GameBoard.playSound(Menu.MenuSlide, 0);\
+				this.itemLast.highlight();\
+			\}\
+			\
+			this.repaint();\
+		\}\
+	\}\
+	\
+	public void back()\
+	\{\
+		mainBoard.LaunchMenu(0);\
+		\
+		//This isn't right, but nothing else works, and I'm outta time. If anything, I think the garbage collector will get it\
+		for (int i = 0; i < this.cells.length; i++)\
+		\{this.cells[i].lbl1.setText("");\}\
+\
+		mainBoard.remove(this);\
+		\
+		GameBoard.playSound(Menu.Click2, 0);\
+	\}\
+	\
+	@Override\
+	public void paint(Graphics g)\
+	\{\
+		Graphics2D Menu = (Graphics2D)g;\
+		Menu.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);\
+		\
+		//Back Button\
+		Menu.drawImage(backButton.image, backButton.xPos, backButton.yPos, backButton.width, backButton.height, null);\
+		\
+		//Help Cells\
+		for (int i = 0; i < numOfItems; i++)\
+		\{\
+			HImage im = this.cells[i].sprite;\
+			\
+			Menu.drawImage(im.image, im.xPos, im.yPos, im.width, im.height, null);\
+		\}\
+	\}\
+\}}
